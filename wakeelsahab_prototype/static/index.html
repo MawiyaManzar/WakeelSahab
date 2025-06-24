@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WakeelSahab Prototype</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <h1>WakeelSahab Prototype</h1>
+    <form id="caseForm" enctype="multipart/form-data">
+        <label for="case_description">Describe your case:</label><br>
+        <textarea id="case_description" name="case_description" placeholder="Describe your case in simple words" rows="5" cols="50"></textarea><br>
+        <label for="file">Upload PDF (optional):</label><br>
+        <input type="file" id="file" name="file" accept=".pdf"><br>
+        <button type="submit">Start Research</button>
+    </form>
+    <div id="result" style="display: none;">
+        <h2>Case Summary</h2>
+        <textarea id="summary" rows="5" cols="50"></textarea><br>
+        <button onclick="updateSummary()">Update Summary</button>
+        <h2>Follow-Up Questions</h2>
+        <ul id="questions"></ul>
+    </div>
+    <script src="/static/script.js"></script>
+</body>
+</html> 
