@@ -15,11 +15,17 @@
         <button type="submit">Start Research</button>
     </form>
     <div id="result" style="display: none;">
-        <h2>Case Summary</h2>
-        <textarea id="summary" rows="5" cols="50"></textarea><br>
-        <button onclick="updateSummary()">Update Summary</button>
-        <h2>Follow-Up Questions</h2>
-        <ul id="questions"></ul>
+        <h2>Case Report</h2>
+        <div><strong>Title:</strong> <span id="report-title"></span></div>
+        <div><strong>Citation:</strong> <span id="report-citation"></span></div>
+        <div><strong>Summary:</strong> <span id="report-summary"></span></div>
+        <div><strong>Relevant Laws:</strong> <span id="report-laws"></span></div>
+        <div><strong>Relevant Cases:</strong> <span id="report-cases"></span></div>
+        <div><strong>Winning Arguments:</strong> <span id="report-winning"></span></div>
+        <div><strong>Losing Arguments:</strong> <span id="report-losing"></span></div>
+        <div><strong>Conclusion:</strong> <span id="report-conclusion"></span></div>
+        <div><strong>Recommendations:</strong> <span id="report-recommendations"></span></div>
+        <div id="report-error" style="color: red;"></div>
     </div>
     <script src="/static/script.js"></script>
 </body>

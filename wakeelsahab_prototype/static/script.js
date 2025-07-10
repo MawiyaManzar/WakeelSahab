@@ -7,22 +7,41 @@ document.getElementById("caseForm").addEventListener("submit", async (event) => 
         formData.append("file", fileInput.files[0]);
     }
 
-    const response = await fetch("/api/case/input", {
+    const response = await fetch("/generate-report/", {
         method: "POST",
         body: formData
     });
     const data = await response.json();
 
     // Display results
-    document.getElementById("summary").value = data.summary;
-    const questionsList = document.getElementById("questions");
-    questionsList.innerHTML = "";
-    data.questions.forEach(q => {
-        const li = document.createElement("li");
-        li.textContent = q;
-        questionsList.appendChild(li);
-    });
     document.getElementById("result").style.display = "block";
+    // Clear previous error
+    document.getElementById("report-error").textContent = "";
+
+    if (data.error) {
+        document.getElementById("report-error").textContent = "Error: " + data.error;
+        // Clear all fields
+        ["title","citation","summary","relevant_laws","relevant_case","Winning Arguments","Losing Arguments","Conclusion","Recommendations"].forEach(key => {
+            const el = document.getElementById("report-" + key.replace(/ |_/g, "-").toLowerCase());
+            if (el) el.textContent = "";
+        });
+        return;
+    }
+
+    // Helper to set field
+    function setField(id, value) {
+        const el = document.getElementById(id);
+        if (el) el.textContent = value || "";
+    }
+    setField("report-title", data.title);
+    setField("report-citation", data.citation);
+    setField("report-summary", data.summary);
+    setField("report-laws", data.relevant_laws);
+    setField("report-cases", data.relevant_case);
+    setField("report-winning", data["Winning Arguments"]);
+    setField("report-losing", data["Losing Arguments"]);
+    setField("report-conclusion", data.Conclusion);
+    setField("report-recommendations", data.Recommendations);
 
     // Store case ID for updates
     window.currentCaseId = data.case_id;
