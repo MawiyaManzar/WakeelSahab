@@ -31,7 +31,7 @@ document.getElementById("caseForm").addEventListener("submit", async (event) => 
     // Helper to set field
     function setField(id, value) {
         const el = document.getElementById(id);
-        if (el) el.textContent = value || "";
+        if (el) el.innerHTML = convertToHTML(value || "");
     }
     setField("report-title", data.title);
     setField("report-citation", data.citation);
@@ -46,6 +46,44 @@ document.getElementById("caseForm").addEventListener("submit", async (event) => 
     // Store case ID for updates
     window.currentCaseId = data.case_id;
 });
+function convertToHTML(text) {
+    if (!text) return "";
+
+    // Bold (**bold**) and italic (*italic*)
+    text = text.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+    text = text.replace(/\*(.*?)\*/g, "<em>$1</em>");
+
+    // Bullet points (* something)
+    const lines = text.split("\n");
+    let html = "";
+    let inList = false;
+
+    for (let line of lines) {
+        const trimmed = line.trim();
+        if (trimmed.startsWith("* ")) {
+            if (!inList) {
+                html += "<ul>";
+                inList = true;
+            }
+            html += `<li>${trimmed.slice(2)}</li>`;
+        } else if (trimmed.length === 0) {
+            if (inList) {
+                html += "</ul>";
+                inList = false;
+            }
+            html += "<br>";
+        } else {
+            if (inList) {
+                html += "</ul>";
+                inList = false;
+            }
+            html += `<p>${trimmed}</p>`;
+        }
+    }
+
+    if (inList) html += "</ul>";
+    return html;
+}
 
 async function updateSummary() {
     const updatedSummary = document.getElementById("summary").value;
