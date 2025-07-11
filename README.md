@@ -54,7 +54,7 @@ python app.py
 #### For Wakeel Sahab Legal Insight AI:
 ```bash
 cd wakeelsahab-legal-insight-ai
-npm install
+npm install @stagewise/toolbar-react @stagewise-plugins/react
 npm run dev
 ```
 

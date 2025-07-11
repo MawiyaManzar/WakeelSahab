@@ -189,11 +189,11 @@ const LandingPage = () => {
             {/* Quote */}
             <div className="order-1 lg:order-2">
               <blockquote className="text-2xl md:text-3xl font-light text-gray-200 leading-relaxed mb-8">
-                "When it comes to AI and technology, it's all about learning by doing. You won't figure everything out right away, but the more you engage with it, the more opportunities you'll see."
+                "I speak openly from my heart. No matter what the world does with AI, it will remain incomplete without India. I'm making this statement very responsibly."
               </blockquote>
               <cite className="text-gray-400 text-lg">
-                <div className="font-semibold">Thomas Laubert</div>
-                <div>General Counsel, Bayer</div>
+                <div className="font-semibold">Narendra Modi</div>
+                <div>Prime Minister of India</div>
               </cite>
             </div>
           </div>

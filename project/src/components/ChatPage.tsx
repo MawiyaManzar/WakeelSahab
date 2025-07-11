@@ -85,31 +85,29 @@ const ChatPage = () => {
   return (
     <div className="min-h-screen bg-black text-white flex flex-col">
       {/* Header */}
-      <header className="bg-black/95 backdrop-blur-sm border-b border-gray-800 sticky top-0 z-50">
+      <header className="bg-black/95 backdrop-blur-sm border-b border-gray-900 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             {/* Logo */}
-            <div className="flex items-center space-x-2">
-              <Scale className="w-8 h-8 text-blue-400" />
-              <span className="text-2xl font-bold text-white">WakeelSahab</span>
+            <div className="flex items-center">
+              <span className="text-xl font-semibold text-white">WakeelSahab</span>
             </div>
 
             {/* Home Link */}
             <button 
               onClick={() => navigate('/')}
-              className="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors"
+              className="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-lg transition-colors border border-gray-700"
             >
-              <Home className="w-5 h-5" />
-              <span>Home</span>
+              Back to Home
             </button>
           </div>
         </div>
       </header>
 
       {/* Chat Area */}
-      <div className="flex-1 flex flex-col max-w-4xl mx-auto w-full px-4 sm:px-6 lg:px-8">
+      <div className="flex-1 flex flex-col max-w-4xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8">
         {/* Messages Container */}
-        <div className="flex-1 overflow-y-auto py-8 space-y-6">
+        <div className="flex-1 overflow-y-auto space-y-6">
           {messages.map((message) => (
             <div
               key={message.id}
@@ -132,8 +130,8 @@ const ChatPage = () => {
                 {/* Message Bubble */}
                 <div className={`rounded-2xl px-6 py-4 ${
                   message.isUser
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-900 text-gray-100 border border-gray-700'
+                    ? 'bg-gradient-to-r from-yellow-400 to-yellow-500 text-black'
+                    : 'bg-gray-900/50 text-gray-100 border border-gray-800'
                 }`}>
                   <p className="leading-relaxed">{message.text}</p>
                   <p className={`text-xs mt-2 ${
@@ -171,7 +169,7 @@ const ChatPage = () => {
         </div>
 
         {/* Input Area */}
-        <div className="border-t border-gray-800 py-6">
+        <div className="border-t border-gray-900 py-6">
           <div className="flex items-end space-x-4">
             <div className="flex-1 relative">
               <input
@@ -181,14 +179,14 @@ const ChatPage = () => {
                 onChange={(e) => setInputText(e.target.value)}
                 onKeyPress={handleKeyPress}
                 placeholder="Ask me about legal research, case law, statutes..."
-                className="w-full bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent resize-none"
                 disabled={isTyping}
               />
             </div>
             <button
               onClick={handleSendMessage}
               disabled={inputText.trim() === '' || isTyping}
-              className="bg-blue-600 hover:bg-blue-700 disabled:bg-gray-800 disabled:cursor-not-allowed text-white p-3 rounded-xl transition-colors flex items-center justify-center"
+              className="bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 disabled:bg-gray-800 disabled:cursor-not-allowed text-black p-3 rounded-xl transition-all duration-300 flex items-center justify-center"
             >
               <Send className="w-5 h-5" />
             </button>
