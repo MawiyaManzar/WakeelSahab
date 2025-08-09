@@ -1,114 +1,73 @@
-# Wakeel Sahab - Legal Insight AI
+# WakeelSahab – An AI-powered legal assistant for lawyers & law firms
 
-A comprehensive legal AI platform that combines a prototype system with advanced legal insight capabilities.
+Offering smart legal advice chat and a collaborative drafting workspace.
 
-## 🏗️ Project Structure
+![image](https://github.com/user-attachments/assets/0c574d0b-2879-4f6e-a258-0ca09a8dd68b)
 
-This repository contains two main components:
-
-### 1. Wakeel Sahab Prototype (`wakeelsahab_prototype/`)
-A Flask-based web application that provides legal case management and analysis features.
-
-**Features:**
-- Legal case management
-- Document analysis
-- Web-based interface
-- JSON-based data storage
-
-**Tech Stack:**
-- Python/Flask
-- HTML/CSS/JavaScript
-- JSON data storage
-
-### 2. Wakeel Sahab Legal Insight AI (`wakeelsahab-legal-insight-ai/`)
-A modern React-based application with advanced UI components and legal AI capabilities.
-
-**Features:**
-- Modern, responsive UI
-- Legal research tools
-- Dashboard interface
-- Step-by-step legal process guidance
-
-**Tech Stack:**
-- React/TypeScript
-- Tailwind CSS
-- Vite
-- Shadcn/ui components
-
-## 🚀 Getting Started
-
-### Prerequisites
-- Node.js (v16 or higher)
-- Python (v3.8 or higher)
-- Git
-
-### Installation
-
-#### For Wakeel Sahab Prototype:
-```bash
-cd wakeelsahab_prototype
-pip install -r requirements.txt
-python app.py
-```
-
-#### For Wakeel Sahab Legal Insight AI:
-```bash
-cd wakeelsahab-legal-insight-ai
-npm install @stagewise/toolbar-react @stagewise-plugins/react
-npm run dev
-```
-
-## 📁 Directory Structure
-
-```
-WakeelSahab/
-├── wakeelsahab_prototype/          # Flask-based prototype
-│   ├── app.py                     # Main Flask application
-│   ├── main.py                    # Entry point
-│   ├── cases.json                 # Sample legal cases data
-│   ├── requirements.txt           # Python dependencies
-│   └── static/                    # Static assets
-│       ├── index.html
-│       ├── script.js
-│       └── styles.css
-├── wakeelsahab-legal-insight-ai/  # React-based application
-│   ├── src/                       # Source code
-│   ├── public/                    # Public assets
-│   ├── package.json              # Node.js dependencies
-│   └── vite.config.ts            # Vite configuration
-└── backend/                       # Backend services (if any)
-```
-
-## 🛠️ Development
-
-### Contributing
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-### Code Style
-- Python: Follow PEP 8 guidelines
-- JavaScript/TypeScript: Use ESLint configuration
-- React: Follow component-based architecture
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🤝 Support
-
-For support and questions, please open an issue in this repository.
-
-## 🔮 Roadmap
-
-- [ ] Integration between prototype and AI components
-- [ ] Advanced legal document analysis
-- [ ] Machine learning model integration
-- [ ] Multi-language support
-- [ ] Mobile application
+![image](https://github.com/user-attachments/assets/34b5faee-5260-4a91-afdb-b91d1bd8f02e)
+![image](https://github.com/user-attachments/assets/144ece6f-6789-48fd-99e1-fee5c134ee00)
 
 ---
 
-**Note:** This is a development project. Please ensure all legal compliance requirements are met before using in production environments. 
+## Problem
+Legal research and drafting are slow, repetitive, and error-prone. Lawyers juggle multiple sources, re-write the same clauses, and waste billable hours. Existing AI tools are generic and don’t integrate seamlessly with the drafting process.
+
+---
+
+## Solution
+WakeelSahab combines **Legal Research + Drafting** in a single interface:
+
+- **Chat for Law Advice**: Multi-chat interface (LLM + RAG) with voice input.
+- **Legal Memo Maker**: Minimalist drafting interface like type.ai, editable with TipTap, supports AI-assisted drafting, clause suggestions, and real-time improvements.
+
+---
+
+## System Architecture Overview
+
+**Frontend:** Next.js + TipTap Editor  
+**Backend:** FastAPI  
+**LangGraph Orchestrator:**
+- Node 1: Drafter Agent (LLM)
+- Node 2: Chat Agent (LLM + RAG)
+- Node 3: RAG Retriever → ChromaDB Cloud
+
+**ETL Pipeline:**  
+Scrapy web scraper → text processing → populate ChromaDB Cloud
+
+**Vector DB:** ChromaDB Cloud
+
+---
+
+### Excalidraw Diagram
+Include a simple diagram showing:
+- UI components (Chat sidebar, Editor pane, Voice icon)
+- Backend pipeline (ETL → Vector DB → RAG → Agents)
+- LangGraph orchestrator in the middle controlling node flow.
+
+---
+
+## Implementation Plan
+
+### Phase 1: UI & Basic Backend
+- Build Next.js + TipTap editor UI with type.ai-style layout.
+- Create FastAPI backend endpoints for chat, draft, and retrieval.
+
+### Phase 2: LangGraph Integration
+- Define State object (stores conversation history, doc content, retrieval context).
+- Create Nodes: Drafter Agent, Chat Agent, Retriever.
+- Build Orchestrator with LangGraph to control flow between nodes.
+
+---
+
+## Deployment Plan
+- **Frontend:** Vercel (Next.js)
+- **Backend:** Render / Railway (FastAPI)
+- **Vector DB:** ChromaDB Cloud
+- **LangGraph Agents:** Deployed with backend (Docker container)
+
+---
+
+## Grant Usage
+- Hire a legal domain expert to fine-tune prompts & evaluate accuracy.
+- Pay for API usage (OpenAI, ChromaDB Cloud).
+- UI/UX polish to reach type.ai-level usability.
